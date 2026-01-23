@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "archive-blocks/on-this-day",
+    "version": "1.0.0",
+    "title": "On This Day",
+    "category": "widgets",
+    "icon": "calendar",
+    "description": "Display posts published on this day in previous years.",
+    "textdomain": "archive-blocks",
+    "attributes": {
+        "maxPosts": {
+            "type": "number",
+            "default": 1
+        },
+        "emptyMessage": {
+            "type": "string",
+            "default": "No posts were published on this day in the past."
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

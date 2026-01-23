@@ -1,0 +1,31 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "archive-blocks/monthly-archives",
+    "version": "1.0.0",
+    "title": "Monthly Archives",
+    "category": "widgets",
+    "icon": "calendar-alt",
+    "description": "Display monthly post archives in a compact format.",
+    "textdomain": "archive-blocks",
+    "attributes": {
+        "style": {
+            "type": "string",
+            "default": "abbreviation"
+        },
+        "divider": {
+            "type": "string",
+            "default": "/"
+        },
+        "showPostCount": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

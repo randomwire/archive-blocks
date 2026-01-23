@@ -1,0 +1,18 @@
+{
+  "name": "archive-blocks",
+  "version": "1.5.0",
+  "description": "A WordPress Gutenberg block for displaying monthly post archives in a compact format",
+  "author": "David Gilbert",
+  "homepage": "https://randomwire.com",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "zip": "npm run build && cd .. && zip -r archive-blocks.zip archive-blocks -x '*.DS_Store' -x 'archive-blocks/node_modules/*' -x 'archive-blocks/src/*' -x 'archive-blocks/package*.json' -x 'archive-blocks/.claude/*' -x 'archive-blocks/CLAUDE.md'"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.28.6",
+    "@wordpress/scripts": "^28.0.0"
+  }
+}
