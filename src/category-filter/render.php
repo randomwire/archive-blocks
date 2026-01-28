@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side rendering of the Category Filter block.
+ * Server-side rendering of the Category Nav Buttons block.
  *
  * @param array    $attributes Block attributes.
  * @param string   $content    Block default content.

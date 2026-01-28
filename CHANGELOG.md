@@ -2,7 +2,7 @@
 
 ## 1.6.0 - 2026-01-28
 
-- Added Category Filter block for displaying categories as filter buttons
+- Added Category Nav Buttons block for displaying categories as filter buttons
 - Active category buttons use filled style, inactive use outline style
 - Fixed deprecation warnings in all blocks for WordPress 6.7+ compatibility
 

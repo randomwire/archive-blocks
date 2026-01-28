@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "archive-blocks/category-filter",
   "version": "1.6.0",
-  "title": "Category Filter",
+  "title": "Category Nav Buttons",
   "category": "widgets",
   "icon": "category",
   "description": "Display categories as filter buttons linking to archive pages.",

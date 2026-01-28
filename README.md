@@ -7,7 +7,7 @@ Gutenberg blocks for displaying post archives in a simple format.
 - **Monthly Archives** - Display posts grouped by month in a compact format
 - **On This Day** - Show posts published on this day in previous years
 - **Popular Terms** - Display your most-used categories or tags
-- **Category Filter** - Display categories as filter buttons linking to archive pages
+- **Category Nav Buttons** - Display categories as filter buttons linking to archive pages
 
 ## Requirements
 
