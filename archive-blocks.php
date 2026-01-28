@@ -21,7 +21,7 @@ function archive_blocks_init() {
     register_block_type( __DIR__ . '/build/monthly-archives' );
     register_block_type( __DIR__ . '/build/popular-terms' );
     register_block_type( __DIR__ . '/build/on-this-day' );
-    register_block_type( __DIR__ . '/build/category-filter' );
+    register_block_type( __DIR__ . '/build/category-nav-buttons' );
 }
 add_action( 'init', 'archive_blocks_init' );
 

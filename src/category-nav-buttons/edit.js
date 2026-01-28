@@ -129,7 +129,7 @@ export default function Edit( { attributes, setAttributes } ) {
             <div { ...blockProps }>
                 <ServerSideRender
                     key={ refreshKey }
-                    block="archive-blocks/category-filter"
+                    block="archive-blocks/category-nav-buttons"
                     attributes={ attributes }
                     httpMethod="POST"
                 />
