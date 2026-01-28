@@ -30,30 +30,40 @@ export default function Edit( { attributes, setAttributes } ) {
             <InspectorControls>
                 <PanelBody title={ __( 'Popular Terms Settings', 'archive-blocks' ) }>
                     <SelectControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Taxonomy', 'archive-blocks' ) }
                         value={ taxonomy }
                         options={ taxonomyOptions }
                         onChange={ ( value ) => setAttributes( { taxonomy: value } ) }
                     />
                     <SelectControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Number of Terms', 'archive-blocks' ) }
                         value={ count }
                         options={ countOptions }
                         onChange={ ( value ) => setAttributes( { count: parseInt( value, 10 ) } ) }
                     />
                     <SelectControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Order By', 'archive-blocks' ) }
                         value={ orderBy }
                         options={ orderByOptions }
                         onChange={ ( value ) => setAttributes( { orderBy: value } ) }
                     />
                     <TextControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Exclude Terms', 'archive-blocks' ) }
                         help={ __( 'Comma-separated list of term names to exclude', 'archive-blocks' ) }
                         value={ exclude }
                         onChange={ ( value ) => setAttributes( { exclude: value } ) }
                     />
                     <TextControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Separator', 'archive-blocks' ) }
                         value={ separator }
                         onChange={ ( value ) => setAttributes( { separator: value } ) }

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "archive-blocks/category-filter",
+  "version": "1.6.0",
+  "title": "Category Filter",
+  "category": "widgets",
+  "icon": "category",
+  "description": "Display categories as filter buttons linking to archive pages.",
+  "textdomain": "archive-blocks",
+  "attributes": {
+    "filterMode": {
+      "type": "string",
+      "default": "all"
+    },
+    "includedCategories": {
+      "type": "array",
+      "default": []
+    },
+    "excludedCategories": {
+      "type": "array",
+      "default": []
+    },
+    "showAll": {
+      "type": "boolean",
+      "default": true
+    },
+    "allButtonUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "allButtonLabel": {
+      "type": "string",
+      "default": "All"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "text": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": [
+    "file:./style-index.css",
+    "wp-block-button"
+  ],
+  "render": "file:./render.php"
+}

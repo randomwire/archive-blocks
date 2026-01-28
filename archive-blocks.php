@@ -3,7 +3,7 @@
  * Plugin Name:       Archive Blocks
  * Plugin URI:        https://randomwire.com/plugins/archive-blocks/
  * Description:       Gutenberg blocks for displaying post archives in a simple format.
- * Version:           1.0.0
+ * Version:           1.6.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            David Gilbert
@@ -21,6 +21,7 @@ function archive_blocks_init() {
     register_block_type( __DIR__ . '/build/monthly-archives' );
     register_block_type( __DIR__ . '/build/popular-terms' );
     register_block_type( __DIR__ . '/build/on-this-day' );
+    register_block_type( __DIR__ . '/build/category-filter' );
 }
 add_action( 'init', 'archive_blocks_init' );
 
@@ -37,11 +38,15 @@ function archive_blocks_get_data() {
         global $wpdb;
 
         $results = $wpdb->get_results(
-            "SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
-             FROM {$wpdb->posts}
-             WHERE post_type = 'post'
-             AND post_status = 'publish'
-             ORDER BY year DESC, month ASC",
+            $wpdb->prepare(
+                "SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
+                 FROM {$wpdb->posts}
+                 WHERE post_type = %s
+                 AND post_status = %s
+                 ORDER BY year DESC, month ASC",
+                'post',
+                'publish'
+            ),
             ARRAY_A
         );
 
@@ -74,12 +79,16 @@ function archive_blocks_get_yearly_counts() {
         global $wpdb;
 
         $results = $wpdb->get_results(
-            "SELECT YEAR(post_date) AS year, COUNT(*) AS count
-             FROM {$wpdb->posts}
-             WHERE post_type = 'post'
-             AND post_status = 'publish'
-             GROUP BY year
-             ORDER BY year DESC",
+            $wpdb->prepare(
+                "SELECT YEAR(post_date) AS year, COUNT(*) AS count
+                 FROM {$wpdb->posts}
+                 WHERE post_type = %s
+                 AND post_status = %s
+                 GROUP BY year
+                 ORDER BY year DESC",
+                'post',
+                'publish'
+            ),
             ARRAY_A
         );
 

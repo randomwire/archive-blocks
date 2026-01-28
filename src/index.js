@@ -7,3 +7,4 @@
 import './monthly-archives';
 import './popular-terms';
 import './on-this-day';
+import './category-filter';

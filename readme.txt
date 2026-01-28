@@ -4,7 +4,7 @@ Tags: gutenberg, blocks, archives, posts
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.6.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,7 @@ Archive Blocks provides three custom Gutenberg blocks for displaying your conten
 * **Monthly Archives** - Display posts grouped by month in a compact format
 * **On This Day** - Show posts published on this day in previous years
 * **Popular Terms** - Display your most-used categories or tags
+* **Category Filter** - Display categories as filter buttons linking to archive pages
 
 All blocks are lightweight, accessible, and follow WordPress coding standards.
 
@@ -44,6 +45,11 @@ Yes, blocks output semantic HTML with CSS classes for easy customization.
 
 == Changelog ==
 
+= 1.6.0 =
+* Added Category Filter block for displaying categories as filter buttons
+* Active category buttons use filled style, inactive use outline style
+* Fixed deprecation warnings for WordPress 6.7+ compatibility
+
 = 1.0.0 =
 * Initial public release
 * Monthly Archives block
@@ -52,6 +58,9 @@ Yes, blocks output semantic HTML with CSS classes for easy customization.
 * Translation ready
 
 == Upgrade Notice ==
+
+= 1.6.0 =
+New Category Filter block and WordPress 6.7+ compatibility fixes.
 
 = 1.0.0 =
 First stable release.

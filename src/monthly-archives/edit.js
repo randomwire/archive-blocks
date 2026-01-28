@@ -18,17 +18,22 @@ export default function Edit( { attributes, setAttributes } ) {
             <InspectorControls>
                 <PanelBody title={ __( 'Archive Settings', 'archive-blocks' ) }>
                     <SelectControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Month Display Style', 'archive-blocks' ) }
                         value={ style }
                         options={ styleOptions }
                         onChange={ ( value ) => setAttributes( { style: value } ) }
                     />
                     <TextControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Month Divider', 'archive-blocks' ) }
                         value={ divider }
                         onChange={ ( value ) => setAttributes( { divider: value } ) }
                     />
                     <ToggleControl
+                        __nextHasNoMarginBottom
                         label={ __( 'Show number of posts', 'archive-blocks' ) }
                         checked={ showPostCount }
                         onChange={ ( value ) => setAttributes( { showPostCount: value } ) }

@@ -20,12 +20,16 @@ export default function Edit( { attributes, setAttributes } ) {
             <InspectorControls>
                 <PanelBody title={ __( 'Settings', 'archive-blocks' ) }>
                     <SelectControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Max Number of Posts', 'archive-blocks' ) }
                         value={ maxPosts }
                         options={ maxPostsOptions }
                         onChange={ ( value ) => setAttributes( { maxPosts: parseInt( value, 10 ) } ) }
                     />
                     <TextControl
+                        __nextHasNoMarginBottom
+                        __next40pxDefaultSize
                         label={ __( 'Empty Message', 'archive-blocks' ) }
                         value={ emptyMessage }
                         onChange={ ( value ) => setAttributes( { emptyMessage: value } ) }
