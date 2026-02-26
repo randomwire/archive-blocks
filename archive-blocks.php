@@ -3,7 +3,7 @@
  * Plugin Name:       Archive Blocks
  * Plugin URI:        https://randomwire.com/plugins/archive-blocks/
  * Description:       Gutenberg blocks for displaying post archives in a simple format.
- * Version:           1.6.0
+ * Version:           1.7.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            David Gilbert
@@ -22,6 +22,7 @@ function archive_blocks_init() {
     register_block_type( __DIR__ . '/build/popular-terms' );
     register_block_type( __DIR__ . '/build/on-this-day' );
     register_block_type( __DIR__ . '/build/category-nav-buttons' );
+    register_block_type( __DIR__ . '/build/popular-posts' );
 }
 add_action( 'init', 'archive_blocks_init' );
 
@@ -202,6 +203,63 @@ function archive_blocks_get_popular_terms( $args ) {
 
         wp_cache_set( $cache_key, $data, '', HOUR_IN_SECONDS );
     }
+
+    return $data;
+}
+
+/**
+ * Get popular posts from Jetpack Stats with caching.
+ *
+ * @param int $days Number of days to look back (0 for all time).
+ * @return array Array of post data with post_id, title, permalink, and views.
+ */
+function archive_blocks_get_popular_posts( $days ) {
+    $cache_key = 'archive_blocks_popular_posts_' . md5( (string) $days );
+    $data = wp_cache_get( $cache_key );
+
+    if ( false !== $data ) {
+        return $data;
+    }
+
+    if ( ! function_exists( 'stats_get_csv' ) ) {
+        return array();
+    }
+
+    $stats = stats_get_csv( 'postviews', "days={$days}&limit=200" );
+
+    if ( empty( $stats ) || ! is_array( $stats ) ) {
+        $data = array();
+        wp_cache_set( $cache_key, $data, '', HOUR_IN_SECONDS );
+        return $data;
+    }
+
+    $data = array();
+    foreach ( $stats as $row ) {
+        if ( count( $data ) >= 100 ) {
+            break;
+        }
+
+        $post_id = isset( $row['post_id'] ) ? (int) $row['post_id'] : 0;
+
+        if ( 0 === $post_id ) {
+            continue;
+        }
+
+        $post = get_post( $post_id );
+
+        if ( ! $post || 'publish' !== $post->post_status || 'post' !== $post->post_type ) {
+            continue;
+        }
+
+        $data[] = array(
+            'post_id'   => $post_id,
+            'title'     => get_the_title( $post ),
+            'permalink' => get_permalink( $post ),
+            'views'     => isset( $row['views'] ) ? (int) $row['views'] : 0,
+        );
+    }
+
+    wp_cache_set( $cache_key, $data, '', HOUR_IN_SECONDS );
 
     return $data;
 }

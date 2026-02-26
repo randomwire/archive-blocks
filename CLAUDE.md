@@ -11,24 +11,26 @@ npm run start    # Development mode with watch
 
 ## Architecture
 
-This is a WordPress Gutenberg block plugin that displays monthly post archives in a compact format (e.g., "2024: Jan Feb Mar...").
+This is a WordPress Gutenberg block plugin providing archive and discovery blocks. Each block lives in its own `src/<block-name>/` directory with `block.json`, `index.js`, `edit.js`, and `render.php`.
 
-### Key Files
+### Plugin Entry Point
 
-- **archive-blocks.php** - Main plugin file. Registers the block and provides `archive_blocks_get_data()` which queries posts and caches archive data (year → months mapping) for 1 hour.
-- **src/block.json** - Block metadata defining `archive-blocks/compact-archive` with two attributes: `style` (abbreviation/initial/numeric) and `divider` (separator character).
-- **src/edit.js** - Editor component using `ServerSideRender` for live preview. Provides inspector controls for style and divider settings.
-- **src/render.php** - Server-side rendering. Iterates through years/months, linking months with posts and showing empty months as spans.
+- **archive-blocks.php** — Registers all blocks in `archive_blocks_init()` and provides shared helper functions with caching (`archive_blocks_get_data()`, `archive_blocks_get_yearly_counts()`, `archive_blocks_get_popular_terms()`, `archive_blocks_get_popular_posts()`).
+- **src/index.js** — Imports all block modules for the editor build.
 
-### Block Attributes
+### Blocks
 
-| Attribute | Type | Default | Values |
-|-----------|------|---------|--------|
-| style | string | "abbreviation" | abbreviation, initial, numeric |
-| divider | string | "/" | any string |
+| Block | Slug | Description |
+|-------|------|-------------|
+| Monthly Archives | `archive-blocks/monthly-archives` | Compact year/month archive display (e.g., "2024: Jan Feb Mar...") |
+| Popular Terms | `archive-blocks/popular-terms` | Weighted list of popular categories/tags |
+| On This Day | `archive-blocks/on-this-day` | Posts published on today's date in previous years |
+| Category Nav Buttons | `archive-blocks/category-nav-buttons` | Navigation buttons for category filtering |
+| Popular Posts | `archive-blocks/popular-posts` | Top posts by views from Jetpack Stats (`stats_get_csv()`) |
 
-### Rendering Flow
+### Common Patterns
 
-1. `archive_blocks_get_data()` queries `wp_posts` for distinct year/month combinations with published posts
-2. Results are cached using `wp_cache_set()` for 1 hour
-3. `render.php` generates HTML with linked months (posts exist) or spans (no posts)
+- All blocks use `ServerSideRender` for live editor preview
+- Inspector controls use `__nextHasNoMarginBottom` and `__next40pxDefaultSize` props
+- Helper functions cache results via `wp_cache_set()` for `HOUR_IN_SECONDS`
+- Each `render.php` uses `get_block_wrapper_attributes()` for the outer wrapper

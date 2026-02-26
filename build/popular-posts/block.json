@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "archive-blocks/popular-posts",
+  "version": "1.0.0",
+  "title": "Popular Posts",
+  "category": "widgets",
+  "icon": "chart-bar",
+  "description": "Display popular posts based on Jetpack Stats view data.",
+  "textdomain": "archive-blocks",
+  "attributes": {
+    "numberOfPosts": {
+      "type": "number",
+      "default": 10
+    },
+    "orderMode": {
+      "type": "string",
+      "default": "popular"
+    },
+    "timePeriod": {
+      "type": "string",
+      "default": "30"
+    },
+    "exclude": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
