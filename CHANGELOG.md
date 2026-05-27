@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.8.0 - 2026-02-27
+
+- Added `/random` permalink that 302-redirects to a random published post
+- Rewrite rules flushed automatically on plugin activation/deactivation
+
+## 1.7.0 - 2026-02-27
+
+- Added Popular Posts block powered by Jetpack Stats view data
+- Configurable post count (1–100), time period (7/30/365 days or all time), and popular vs random ordering
+- Post ID exclusion setting for Popular Posts block
+
 ## 1.6.0 - 2026-01-28
 
 - Added Category Nav Buttons block for displaying categories as filter buttons

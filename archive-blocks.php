@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name:       Archive Blocks
- * Plugin URI:        https://randomwire.com/plugins/archive-blocks/
+ * Plugin URI:        https://github.com/randomwire/archive-blocks
  * Description:       Gutenberg blocks for displaying post archives in a simple format.
- * Version:           1.7.0
+ * Version:           1.8.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            David Gilbert
- * Author URI:        https://randomwire.com/
+ * Author URI:        https://randomwire.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       archive-blocks
@@ -25,6 +25,62 @@ function archive_blocks_init() {
     register_block_type( __DIR__ . '/build/popular-posts' );
 }
 add_action( 'init', 'archive_blocks_init' );
+
+/**
+ * Register rewrite rule for the /random permalink.
+ */
+function archive_blocks_random_post_rewrite() {
+    add_rewrite_rule( '^random/?$', 'index.php?archive_blocks_random=1', 'top' );
+}
+add_action( 'init', 'archive_blocks_random_post_rewrite' );
+
+/**
+ * Register the custom query var so WordPress doesn't strip it.
+ */
+function archive_blocks_random_query_vars( $vars ) {
+    $vars[] = 'archive_blocks_random';
+    return $vars;
+}
+add_filter( 'query_vars', 'archive_blocks_random_query_vars' );
+
+/**
+ * Handle the /random redirect — pick a random published post and 302 to it.
+ */
+function archive_blocks_random_post_redirect() {
+    if ( ! get_query_var( 'archive_blocks_random' ) ) {
+        return;
+    }
+
+    $posts = get_posts( array(
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'orderby'        => 'rand',
+    ) );
+
+    if ( ! empty( $posts ) ) {
+        wp_redirect( get_permalink( $posts[0] ), 302 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'archive_blocks_random_post_redirect' );
+
+/**
+ * Flush rewrite rules on plugin activation.
+ */
+function archive_blocks_activate() {
+    archive_blocks_random_post_rewrite();
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'archive_blocks_activate' );
+
+/**
+ * Flush rewrite rules on plugin deactivation.
+ */
+function archive_blocks_deactivate() {
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'archive_blocks_deactivate' );
 
 /**
  * Get archive data with caching.

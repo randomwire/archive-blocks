@@ -8,6 +8,9 @@ Gutenberg blocks for displaying post archives in a simple format.
 - **On This Day** - Show posts published on this day in previous years
 - **Popular Terms** - Display your most-used categories or tags
 - **Category Nav Buttons** - Display categories as filter buttons linking to archive pages
+- **Popular Posts** - Display top posts by views using Jetpack Stats data
+
+The plugin also registers a `/random` permalink that 302-redirects to a random published post.
 
 ## Requirements
 
