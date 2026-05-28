@@ -27,6 +27,22 @@ function archive_blocks_init() {
 add_action( 'init', 'archive_blocks_init' );
 
 /**
+ * Append Donate + GitHub links to this plugin's row on the Plugins page.
+ */
+function archive_blocks_plugin_row_meta( $links, $file ) {
+    if ( plugin_basename( __FILE__ ) === $file ) {
+        $links[] = '<a href="https://ko-fi.com/randomwire" target="_blank" rel="noopener noreferrer">'
+            . esc_html__( 'Donate', 'archive-blocks' )
+            . '</a>';
+        $links[] = '<a href="https://github.com/randomwire/archive-blocks" target="_blank" rel="noopener noreferrer">'
+            . esc_html__( 'GitHub', 'archive-blocks' )
+            . '</a>';
+    }
+    return $links;
+}
+add_filter( 'plugin_row_meta', 'archive_blocks_plugin_row_meta', 10, 2 );
+
+/**
  * Register rewrite rule for the /random permalink.
  */
 function archive_blocks_random_post_rewrite() {
