@@ -34,9 +34,6 @@ function archive_blocks_plugin_row_meta( $links, $file ) {
         $links[] = '<a href="https://ko-fi.com/randomwire" target="_blank" rel="noopener noreferrer">'
             . esc_html__( 'Donate', 'archive-blocks' )
             . '</a>';
-        $links[] = '<a href="https://github.com/randomwire/archive-blocks" target="_blank" rel="noopener noreferrer">'
-            . esc_html__( 'GitHub', 'archive-blocks' )
-            . '</a>';
     }
     return $links;
 }
