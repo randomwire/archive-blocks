@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+require_once __DIR__ . '/includes/updater.php';
+randomwire_init_github_updater( __FILE__ );
+
 function archive_blocks_init() {
     register_block_type( __DIR__ . '/build/monthly-archives' );
     register_block_type( __DIR__ . '/build/popular-terms' );
