@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.1 - 2026-05-30
+
+- Added GitHub-based automatic updates via Plugin Update Checker
+
 ## 1.8.0 - 2026-02-27
 
 - Added `/random` permalink that 302-redirects to a random published post

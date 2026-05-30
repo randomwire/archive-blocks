@@ -3,7 +3,7 @@
  * Plugin Name:       Archive Blocks
  * Plugin URI:        https://github.com/randomwire/archive-blocks
  * Description:       Gutenberg blocks for displaying post archives in a simple format.
- * Version:           1.8.0
+ * Version:           1.8.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            David Gilbert

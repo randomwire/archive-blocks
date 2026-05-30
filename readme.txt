@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, archives, posts
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,9 @@ Yes, blocks output semantic HTML with CSS classes for easy customization.
 
 == Changelog ==
 
+= 1.8.1 =
+* Added GitHub-based automatic updates via Plugin Update Checker
+
 = 1.8.0 =
 * Added `/random` permalink that 302-redirects to a random published post
 * Rewrite rules flushed automatically on plugin activation/deactivation
@@ -71,6 +74,9 @@ Yes, blocks output semantic HTML with CSS classes for easy customization.
 * Translation ready
 
 == Upgrade Notice ==
+
+= 1.8.1 =
+Plugin now updates itself directly from GitHub releases.
 
 = 1.8.0 =
 New /random permalink for random post discovery.
